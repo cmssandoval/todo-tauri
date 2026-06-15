@@ -9,7 +9,9 @@ const TaskInput = () => {
         setTaskValue(e.target.value);
     };
 
-    const handleTaskSubmit = () => {
+    const handleTaskSubmit = (e) => {
+        e.preventDefault();
+
         const formatedDate = new Date().toLocaleString('es-CL', {
             dateStyle: 'short',
             timeStyle: 'medium',
@@ -30,28 +32,36 @@ const TaskInput = () => {
     }, [tasksArray])
 
     return (
-        <Card className='m-4 bg-light border rounded-3 shadow'>
-            <Container fluid className='my-3'>
-                <h4 className='mb-4 text-center'>Crea tu tarea</h4>
+        <Card className='align-items-center m-4 pb-3 bg-light border rounded-3 shadow'>
+            <Container className='m-3 p-3'>
+                <label className='d-block mb-4' htmlFor="taskInput">
+                    <h4 className='text-center fw-bold'>Crea tu tarea</h4>
+                </label>
                 <Row>
-                    <Col className='col-9 px-auto'>
-                        <Form.Control
-                            className='italic-placeholder'
-                            placeholder='Componer una canción'
-                            value={taskValue}
-                            onChange={handleTaskValue}
-                        />
-                    </Col>
+                    <form
+                        className='d-flex gap-4 align-items-center'
+                        onSubmit={handleTaskSubmit}
+                    >
+                        <Col className='col-9'>
+                            <Form.Control
+                                id='taskInput'
+                                className='italic-placeholder'
+                                placeholder='Componer una canción'
+                                value={taskValue}
+                                onChange={handleTaskValue}
+                            />
+                        </Col>
 
-                    <Col className='col-3 d-flex align-items-end'>
-                        <Button
-                            className='w-100'
-                            onClick={handleTaskSubmit}
-                        >Crear Tarea</Button>
-                    </Col>
+                        <Col className='col-3'>
+                            <Button
+                                type='submit'
+                            >Crear Tarea</Button>
+                        </Col>
+                    </form>
                 </Row>
             </Container>
         </Card>
+
     );
 };
 

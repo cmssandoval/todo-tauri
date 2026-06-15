@@ -1,12 +1,15 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-const TaskBrowser = () => {
+const TaskBrowser = ({ id }) => {
     return (
-        <Form.Control
-            className='italic-placeholder'
-            placeholder='Buscar tarea...'
-        />
+        <>
+            <Form.Control
+                id={id}
+                className='italic-placeholder'
+                placeholder='Filtrar tareas...'
+            />
+        </>
     );
 };
 
